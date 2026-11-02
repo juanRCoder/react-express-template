@@ -1,9 +1,16 @@
 import express from 'express';
 import cors from 'cors';
-import apiRouter from './routes/route';
+import apiRouter from '@/routes/route';
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 app.use(express.json());
 
 app.use('/api', apiRouter);
